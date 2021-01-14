@@ -1,4 +1,4 @@
-### General Payment System
+### General Payment Demo
 
 支持**微信Native**支付与**支付宝PC**支付，可以与其它项目集成。
 
