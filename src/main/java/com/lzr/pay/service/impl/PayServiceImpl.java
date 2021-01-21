@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 
 @Slf4j
 @Service
-public class PayService implements IPayService {
+public class PayServiceImpl implements IPayService {
 
     @Autowired
     private BestPayService bestPayService;
@@ -30,6 +30,7 @@ public class PayService implements IPayService {
      * 创建/发起订单
      * @param orderId
      * @param amount
+     * @param bestPayTypeEnum
      */
     @Override
     public PayResponse create(String orderId, BigDecimal amount, BestPayTypeEnum bestPayTypeEnum) {
@@ -82,7 +83,7 @@ public class PayService implements IPayService {
             payInfoMapper.updateByPrimaryKeySelective(payInfo);
         }
 
-        // 4. 通知微信已收到通知
+        // 4. 通知微信/支付宝已收到通知
         if (payResponse.getPayPlatformEnum() == BestPayPlatformEnum.WX) {
             return "<xml>\n" +
                     "  <return_code><![CDATA[SUCCESS]]></return_code>\n" +
